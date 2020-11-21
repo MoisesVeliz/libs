@@ -1,10 +1,29 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Button } from 'react-native'
 
-export default () => {
+export default ({route, navigation}) => {
+
+    const {name, id, desc} = route.params
+
+    const isEnty = (str) => {
+        if(str.trim().length === 0){
+            return "No hay datos"
+        }
+        return str
+    }
+
     return (
         <View style={styles.container}>
-            <Text>Hola details</Text>
+            <Text>Nombre del libro</Text>
+            <Text>{isEnty(name)}</Text>
+            <Text>------------------</Text>
+            <Text>Id de registro</Text>
+            <Text>{isEnty(id)}</Text>
+            <Text>------------------</Text>
+            <Text>Descripcion</Text>
+            <Text>{isEnty(desc)}</Text>
+            <Text>------------------</Text>
+            <Button title="Volver a la lista" onPress={() => navigation.goBack()}/>
         </View>
     )
 }
